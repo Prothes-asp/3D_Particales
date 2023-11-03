@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>3D Particle</title>
+		<meta name="description" content="An exploration of 3D particle animations using three.js and easing" />
+		<meta name="keywords" content="preloader, loader, animation, 3d, particles, three.js, easing, web development" />
+		
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,400,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="..//all common file/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="..//all common file/css/pater.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+		<script src="..//all common file/js/analytics.js"></script>
+	</head>
+	<body class="demo-4">
+		<svg class="hidden">
+			<symbol id="icon-arrow" viewbox="0 0 24 24">
+				<title>arrow</title>
+				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+			</symbol>
+			
+		
+			
+			<symbol id="icon-debug" viewbox="0 0 146.001 101">
+				<title>Toggle Debug Mode</title>
+				<path d="M145.448,72.105L129.237,64l16.211-8.105c0.494-0.247,0.694-0.848,0.447-1.342c-0.247-0.494-0.846-0.694-1.342-0.447				L127,62.882L111.237,55l16.211-8.105c0.494-0.247,0.694-0.848,0.447-1.342c-0.247-0.494-0.847-0.695-1.342-0.447L109,53.882				L93.237,46l16.211-8.105c0.494-0.247,0.694-0.848,0.447-1.342s-0.847-0.695-1.342-0.447L92,44.382V28V10				c0-0.013-0.005-0.024-0.005-0.037c-0.001-0.028-0.008-0.055-0.012-0.083c-0.011-0.093-0.036-0.185-0.074-0.274				c-0.007-0.017-0.006-0.036-0.014-0.053c-0.005-0.011-0.015-0.017-0.021-0.027c-0.057-0.105-0.128-0.198-0.213-0.273				c-0.018-0.016-0.04-0.026-0.059-0.04c-0.05-0.038-0.098-0.078-0.155-0.107l-18-9c-0.281-0.141-0.613-0.141-0.895,0l-18,9				c-0.057,0.029-0.106,0.069-0.155,0.107c-0.019,0.014-0.04,0.024-0.058,0.04c-0.085,0.075-0.156,0.168-0.213,0.273				c-0.006,0.01-0.016,0.016-0.021,0.027c-0.009,0.017-0.007,0.036-0.014,0.053c-0.039,0.09-0.063,0.182-0.074,0.274				c-0.003,0.028-0.011,0.055-0.012,0.083C54.005,9.976,54,9.987,54,10v18v16.382l-16.553-8.276c-0.496-0.248-1.095-0.047-1.342,0.447				c-0.247,0.494-0.047,1.095,0.447,1.342L52.764,46L37,53.882l-17.553-8.776c-0.495-0.248-1.095-0.046-1.342,0.447				c-0.247,0.494-0.047,1.095,0.447,1.342L34.764,55L19,62.882L1.448,54.105c-0.495-0.247-1.095-0.046-1.342,0.447				c-0.247,0.494-0.047,1.095,0.447,1.342L16.764,64L0.553,72.105c-0.494,0.247-0.694,0.848-0.447,1.342				C0.281,73.798,0.634,74,1.001,74c0.15,0,0.303-0.034,0.446-0.105L19,65.118L34.764,73l-16.211,8.105				c-0.494,0.247-0.694,0.848-0.447,1.342C18.281,82.798,18.634,83,19.001,83c0.15,0,0.303-0.034,0.446-0.105L37,74.118L52.764,82				l-16.211,8.105c-0.494,0.247-0.694,0.848-0.447,1.342C36.281,91.798,36.634,92,37.001,92c0.15,0,0.303-0.034,0.446-0.105L55,83.118				L70.764,91l-16.211,8.105c-0.494,0.247-0.694,0.848-0.447,1.342c0.175,0.351,0.528,0.553,0.896,0.553				c0.15,0,0.303-0.034,0.446-0.105L73,92.118l17.553,8.776c0.144,0.072,0.296,0.105,0.446,0.105c0.367,0,0.72-0.202,0.896-0.553				c0.247-0.494,0.047-1.095-0.447-1.342L75.237,91L91,83.118l17.553,8.776c0.144,0.072,0.296,0.105,0.446,0.105				c0.367,0,0.72-0.202,0.896-0.553c0.247-0.494,0.047-1.095-0.447-1.342L93.237,82L109,74.118l17.553,8.776				c0.144,0.072,0.296,0.105,0.446,0.105c0.367,0,0.72-0.202,0.896-0.553c0.247-0.494,0.047-1.095-0.447-1.342L111.237,73L127,65.118				l17.553,8.776c0.144,0.072,0.296,0.105,0.446,0.105c0.367,0,0.72-0.202,0.896-0.553C146.142,72.953,145.942,72.353,145.448,72.105z				 M73,2.118L88.764,10L73,17.882L57.237,10L73,2.118z M56,11.618l0.118,0.059L70.764,19l1.118,0.559L72,19.618v1v14.764l-0.118-0.059				L57.237,28l-1.118-0.559L56,27.382v-1V11.618z M90,26.382v1l-0.118,0.059L88.764,28L74,35.382V20.618v-1l0.118-0.059L75.237,19				L90,11.618V26.382z M56,47.618l0.118,0.059L70.764,55l0,0l1.118,0.559L72,55.618v1v14.764l-0.118-0.059L57.237,64l0,0l-1.118-0.559				L56,63.382v-1V47.618z M75.236,55L75.236,55L90,47.618v14.764v1l-0.118,0.059L88.764,64l0,0L74,71.382V56.618v-1l0.118-0.059				L75.236,55z M106.764,55L92,62.382V47.618L106.764,55z M90,44.382v1l-0.118,0.059L88.764,46l0,0L74,53.382V38.618v-1l0.118-0.059				L75.237,37L90,29.618V44.382z M56,29.618l0.118,0.059L70.764,37l1.118,0.559L72,37.618v1v14.764l-0.118-0.059L57.237,46l0,0				l-1.118-0.559L56,45.382v-1V29.618z M54,62.382L39.237,55L54,47.618V62.382z M21.237,64L37,56.118L52.764,64L37,71.882L21.237,64z				 M39.237,73L55,65.118L70.764,73L55,80.882L39.237,73z M57.237,82L73,74.118L88.764,82L73,89.882L57.237,82z M75.237,73L91,65.118				L106.764,73L91,80.882L75.237,73z M93.237,64L109,56.118L124.764,64L109,71.882L93.237,64z"/>
+			</symbol>
+		</svg>
+		<main>
+			<div class="content content--fixed">
+				<header class="codrops-header">
+					<div class="codrops-links">
+						<a class="codrops-icon codrops-icon--prev" href="./index3.html" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
+						
+					</div>
+					<h1 class="codrops-header__title">3D Particle</h1>
+				</header>
+				
+				
+		
+				<nav class="demos">
+					<a class="demo" href="..//index.html"><span> Demo 1</span></a>
+					<a class="demo" href="./index2.html"><span> Demo 2</span></a>
+					<a class="demo" href="./index3.html"><span> Demo 3</span></a>
+					<a class="demo demo--current" href="./index4.html"><span> Demo 4</span></a>
+					<a class="demo" href="./index5.html"><span> Demo 5</span></a>
+					<a class="demo" href="./index6.html"><span> Demo 6</span></a>
+					<a class="demo" href="./index7.html"><span> Demo 7</span></a>
+					<a class="demo" href="./index8.html"><span> Demo 8</span></a>
+				</nav>
+				<div class="debug">
+					<svg class="icon icon--debug" title="Toggle Debug Mode"><use xlink:href="#icon-debug"></use></svg>
+					<div class="timescale-wrap">
+						<label class="timescale-label">
+							<span class="timescale-title">Timescale:</span>
+							<span class="timescale-value">1.0</span>
+							<input class="timescale-range" type="range" min="0" max="3" step="0.1" value="1">
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="loader"></div>
+			<div class="content-outer">
+				<div class="content-inner">
+					<h1>Again Play Animation</h1>
+					<a href="./index4.html" class="replay-animation">Replay</a>
+				</div>
+			</div>
+		</main>
+		<script src="..//all common file/js/demo.js"></script>
+		<script src="..//all common file/js/three.min.js"></script>
+		<script src="..//all common file/js/OrbitControls.js"></script>
+		<script src="..//all common file/js/fast-simplex-noise.js"></script>
+		<script src="..//un-common js file/index 4/index.bundle.js"></script>
+		
+	</body>
+</html>
